@@ -1,0 +1,42 @@
+<form #form="ngForm">
+    <h3 *ngIf="data.editMode">Editar socio</h3>
+    <h3 *ngIf="!data.editMode">Agregar socio</h3>
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput required name="nombre" placeholder="Ex. Carmen" [(ngModel)]="data.socio.nombre" minlength="3">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Apellidos</mat-label>
+        <input required matInput name="apellidos" placeholder="Ex. Giraldo Luna" [(ngModel)]="data.socio.apellidos" minlength="3">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Socio</mat-label>
+        <input required appSocioValidator="{{data.numerosSocio}}" matInput name="socio" type="text" maxlength="4" min="0" max="1200" pattern="[0-9]{1,4}$" placeholder="socio" [(ngModel)]="data.socio.socio">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input required matInput name="dni" placeholder="NIF (8 números y 1 letra)" maxlength="9" pattern="^[0-9x-zX-Z][0-9]{7}[A-Za-z]$" [(ngModel)]="data.socio.dni">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Telefono</mat-label>
+        <input required matInput maxlength="9" pattern="^[0-9]{1,9}$" name="telefono" placeholder="numero" [(ngModel)]="data.socio.telefono">
+    </mat-form-field>
+   
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Sexo</mat-label>
+        <mat-select [(value)]="data.socio.sexo" required>
+            <mat-option selected value="Hombre">Hombre</mat-option>
+            <mat-option value="Mujer">Mujer</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button *ngIf="!data.editMode" type="button" mat-raised-button color="primary" [mat-dialog-close]="data.socio" [disabled]="form.invalid">Agregar</button>
+        <button *ngIf="data.editMode" type="button" mat-raised-button color="primary" [mat-dialog-close]="data.socio" [disabled]="form.invalid">Guardar</button>
+        <button type="button" mat-raised-button color="secondary" (click)="onCloseClick()">Cancelar</button>
+    </div>
+</form>

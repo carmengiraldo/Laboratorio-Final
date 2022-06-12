@@ -1,0 +1,21 @@
+/* Application-wide Style*/
+
+h1 {
+    color: #152A69;
+    font-size: 250%;
+}
+.table-container {
+    width: 100%;
+    padding: 0 48px;
+    
+}
+
+
+table {
+    width: 100%;
+   
+}
+
+.buttons {
+    margin-top: 64px;
+}
